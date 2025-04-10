@@ -2,7 +2,7 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
-$mongodb = require __DIR__ . '/mongodb.php';
+// $mongodb = require __DIR__ . '/mongodb.php';
 
 $config = [
     'id' => 'basic'.$params['extraCookies'],
@@ -18,7 +18,7 @@ $config = [
     'params' => $params,
     'components' => [
         'db' => $db,
-        'mongodb' => $mongodb,
+        // 'mongodb' => $mongodb,
         'coreAPI' => [
             'class' => 'app\core\CoreAPI',
         ],
