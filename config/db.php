@@ -8,8 +8,8 @@ return [
     'username' => $_ENV['DB_DEFAULT_USERNAME'],
     'password' => $_ENV['DB_DEFAULT_PASSWORD'],
     'charset' => 'utf8',
-    'enableLogging' => true,
-    'enableProfiling' => true,
+    'enableLogging' => YII_ENV_DEV,
+    'enableProfiling' => YII_ENV_DEV,
 
     // Schema cache options (for production environment)
     'enableSchemaCache' => YII_ENV_DEV,
