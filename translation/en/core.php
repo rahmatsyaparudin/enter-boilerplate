@@ -1,5 +1,4 @@
 <?php
-// Do not Change or remove any values, this used by core
 
 return [
     // General Rules
@@ -52,7 +51,7 @@ return [
     'nullField' => '{label} field: {field} is cannot be null or empty.',
     'allowedField' => '{field} can only contain the field {value}.',
     'integerNoZero' => '{label} must be an integer and greater than 0.',
-
+    'invalidStatusTransition' => 'Invalid status transition change, it should not be changed.',
 
     // General Pagination Rules
     'pageMustBeGreaterThanZero' => 'Page must be greater than 0.',

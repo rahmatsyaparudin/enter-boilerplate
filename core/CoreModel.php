@@ -184,10 +184,10 @@ class CoreModel
 			
 			if ($oldStatus !== null) {
 				if (!isset($allowedStatusUpdate[$oldStatus])) {
-					$model->addError($attribute, 'Invalid status transition');
+					$model->addError($attribute, Yii::t('app', 'invalidStatusTransition'));
 					return;
 				}
-	
+					
 				if (in_array($oldStatus, $disallowedStatusUpdate)) {
 					$model->addError($attribute, Yii::t('app', 'disallowedStatusUpdate', ['value' => $statusList[$oldStatus]]));
 					return;

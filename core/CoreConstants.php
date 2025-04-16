@@ -46,6 +46,8 @@ class CoreConstants
         self::STATUS_COMPLETED => 'Completed',
         self::STATUS_DELETED => 'Deleted',
         self::STATUS_MAINTENANCE => 'Maintenance',
+        self::STATUS_APPROVED => 'Approved',
+        self::STATUS_REJECTED => 'Rejected',
     ];
 
     const PURCHASE_STATUS_LIST = [
@@ -74,7 +76,7 @@ class CoreConstants
             self::STATUS_INACTIVE,
             self::STATUS_ACTIVE,
             self::STATUS_DELETED,
-            self::STATUS_MAINTENANCE
+            self::STATUS_MAINTENANCE,
         ],
         self::STATUS_ACTIVE => [
             self::STATUS_COMPLETED,
@@ -84,20 +86,24 @@ class CoreConstants
         self::STATUS_INACTIVE => [
             self::STATUS_ACTIVE,
             self::STATUS_DRAFT,
-            self::STATUS_DELETED
+            self::STATUS_DELETED,
         ],
         self::STATUS_MAINTENANCE => [
             self::STATUS_INACTIVE,
             self::STATUS_ACTIVE,
             self::STATUS_DRAFT,
-            self::STATUS_DELETED
+            self::STATUS_DELETED,
+        ],
+        self::STATUS_APPROVED => [
+            self::STATUS_COMPLETED,
+            self::STATUS_APPROVED,
+            self::STATUS_REJECTED,
         ],
     ];
 
     const DISALLOWED_UPDATE_STATUS_LIST = [
         self::STATUS_COMPLETED, 
         self::STATUS_DELETED,
-        self::STATUS_APPROVED,
         self::STATUS_REJECTED,
     ];
 }

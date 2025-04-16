@@ -253,6 +253,7 @@ class CoreController extends Controller
 
     public function emptyParams($model, $scenario = null): bool|array
     {
+        $message = null;
         $scenario = $scenario ?? Constants::SCENARIO_UPDATE;
         $optimisticLock = Constants::OPTIMISTIC_LOCK;
 

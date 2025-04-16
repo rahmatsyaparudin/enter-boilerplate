@@ -37,6 +37,8 @@ return [
     'nullField' => '{label} field: {field} tidak boleh kosong atau null.',
     'allowedField' => '{field} hanya boleh berisi {value}.',
     'integerNoZero' => '{label} harus berupa bilangan bulat dan lebih besar dari 0.',
+    'invalidStatusTransition' => 'Transisi perubahan status data tidak valid.',
+
 
     // General Pagination Rules
     'pageMustBeGreaterThanZero' => 'Halaman harus lebih besar dari 0.',
