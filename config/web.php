@@ -1,8 +1,15 @@
 <?php
 
+/*
+ * Web configuration for the application.
+ * 
+ * Version: 1.0.0
+ * Version Date: 2025-05-05
+ */
+
 $params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
 // $mongodb = require __DIR__ . '/mongodb.php';
+$db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic'.$params['extraCookies'],
@@ -23,7 +30,7 @@ $config = [
             'class' => 'app\core\CoreAPI',
         ],
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            #insert a secret key in the following (if it is empty) - this is required by cookie validation
             // 'cookieValidationKey' => 'rHaRkLSi4OMU-_Gi8LBn0Fh8IcqrYJP7'.$params['extraCookies'],
             'enableCsrfValidation' => $params['request']['enableCsrfValidation'],
             'enableCookieValidation' => false,
@@ -93,31 +100,31 @@ $config = [
             ],
         ],
         'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 3, #,
+            'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
-                    // adding for query logging
+                    #adding for query logging and prevent logging of $_SERVER, $_SESSION, etc.
                     'categories' => ['yii\db\Command::execute'],
-                    'logFile' => '@runtime/logs/sql.log',  // Log SQL queries to a specific file
+                    'logFile' => '@runtime/logs/sql.log',
                     'maxFileSize' => 1024 * 2,
                     'maxLogFiles' => 10,
                     'logVars' => [],  // Prevents logging of $_SERVER, $_SESSION, etc.
                 ],
             ],
         ],
+        'mailer' => [
+            'class' => \yii\symfonymailer\Mailer::class,
+            'viewPath' => '@app/mail',
+            #send all mails to a file by default.
+            'useFileTransport' => true,
+        ],
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
             'enableSession' => false,
             'loginUrl' => null
-        ],
-        'mailer' => [
-            'class' => \yii\symfonymailer\Mailer::class,
-            'viewPath' => '@app/mail',
-            // send all mails to a file by default.
-            'useFileTransport' => true,
         ],
     ],
     'modules' => [
@@ -146,18 +153,18 @@ $config = [
 ];
 
 if (YII_ENV_DEV) {
-    // configuration adjustments for 'dev' environment
+    #configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
+        #uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
+        #uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 }

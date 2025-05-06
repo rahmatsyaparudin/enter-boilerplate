@@ -37,7 +37,7 @@ class CustomErrorHandler extends ErrorHandler
                 'errors' => $errors,
             ];
 
-            if (YII_ENV_DEV && !($exception instanceof ErrorMessage)) {
+            if ((YII_ENV_DEV || YII_DEBUG) && !($exception instanceof ErrorMessage)) {
                 $response['trace_for_dev'] = [
                     'exception' => get_class($exception),
                     'trace' => $exception->getTraceAsString(),

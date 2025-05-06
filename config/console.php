@@ -4,7 +4,7 @@ $db = require __DIR__ . '/db.php';
 $params = require __DIR__ . '/params.php';
 
 $config = [
-    'id' => 'basic-console',
+    'id' => $params['titleService'] . '-console',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',

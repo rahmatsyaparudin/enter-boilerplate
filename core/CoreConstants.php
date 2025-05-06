@@ -3,13 +3,16 @@
 namespace app\core;
 
 /**
- * DO NOT CHANGE VALUES OF THIS CoreConstants
- * IF YOU CHANGE VALUES, ALL DATA IN DATABASE WILL BE INCORRECT
+ * CoreConstants functionality for the application core.
+ * Provides constants for status, scenario, and validation.
+ * Version: 1.0.0
+ * Version Date: 2025-05-05
  */
 
 class CoreConstants
 {
     const OPTIMISTIC_LOCK = 'lock_version';
+    const SYNC_MONGODB = 'sync_mdb';
 
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;

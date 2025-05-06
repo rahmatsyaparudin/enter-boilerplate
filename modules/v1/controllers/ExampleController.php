@@ -9,18 +9,20 @@ use yii\filters\VerbFilter;
 use app\helpers\Constants;
 use app\components\CustomException;
 use app\core\CoreController;
-use app\models\search\ExampleSearch;
 use app\models\Example;
+use app\models\search\ExampleSearch;
 
 /**
- * Default controller for the `v1` module
+ * Example controller for the `v1` module
  */
+
 class ExampleController extends CoreController
 {
 	public function behaviors()
     {
 		$behaviors = parent::behaviors();
 
+		#add your action here
 		$behaviors['verbs']['actions'] = array_merge(
 			$behaviors['verbs']['actions'],
 			[
@@ -45,6 +47,7 @@ class ExampleController extends CoreController
 
 	public function actionList()
 	{
+		#uncomment below code if you want to show data from mongodb
 		// $params = Yii::$app->getRequest()->getBodyParams();
 
 		// $searchModel = new ExampleSearch();
@@ -64,11 +67,12 @@ class ExampleController extends CoreController
 
         CoreController::unavailableParams($model, $params);
 
-		$params['status'] = Constants::STATUS_DRAFT;
 		$model->scenario = $scenario;
+		$params['status'] = Constants::STATUS_DRAFT;
 
 		if ($model->load($params, '') && $model->validate()) {
 			if ($model->save()) {
+				#uncomment below code if you want to insert data to mongodb
 				// Yii::$app->mongodb->upsert($model);
 
 				return CoreController::coreSuccess($model);
@@ -103,6 +107,7 @@ class ExampleController extends CoreController
 			CoreController::emptyParams($model);
 
 			if ($model->save()) {
+				#uncomment below code if you want to insert data to mongodb
 				// Yii::$app->mongodb->upsert($model);
 
 				return CoreController::coreSuccess($model);
@@ -125,8 +130,8 @@ class ExampleController extends CoreController
 			return CoreController::coreDataNotFound();
 		}
 
-		$params['status'] = Constants::STATUS_DELETED;
 		$model->scenario = $scenario;
+		$params['status'] = Constants::STATUS_DELETED;
 
 		if ($superadmin = CoreController::superadmin($params)) {
 			return $superadmin;
@@ -136,6 +141,7 @@ class ExampleController extends CoreController
 			CoreController::emptyParams($model);
 
 			if ($model->save()) {
+				#uncomment below code if you want to insert data to mongodb
 				// Yii::$app->mongodb->upsert($model);
 
 				return CoreController::coreSuccess($model);

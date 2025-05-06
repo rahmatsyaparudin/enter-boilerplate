@@ -67,7 +67,7 @@ class CustomMongodb extends \MongoDB\Client
         }
     }
 
-    public function upsertManyCustomCollection($tableName, array $attrtibutes, $data): void
+    public function upsertManyCustomCollection($tableName, array $attrtibutes, $data, $syncException=true): void
     {
         try {
             $mongodb = $this->getConnection();
@@ -90,8 +90,9 @@ class CustomMongodb extends \MongoDB\Client
 
             $collection->bulkWrite($bulkWrite);
         } catch (\Exception $e) {
-            // TODO: Handle Exception if custom table is failed to sync
-            // Yii::$app->coreAPI->setMongodbSyncFailed($model);
+            if ($syncException){
+                Yii::$app->coreAPI->setMongodbSyncFailed($model);
+            }
         }
     }
 

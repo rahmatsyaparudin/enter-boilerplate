@@ -13,7 +13,7 @@ class MigrateController extends BaseMigrateController
 
     public function beforeAction($action)
     {
-        $params = require(__DIR__ . '/../config/params.php');
+        $params = require(\Yii::getAlias('@app/config/params.php'));
 
         if ($params['migrateFresh'] === false && $action->id === 'fresh') {
             echo "Skipping the migrate/fresh command in non-dev environment.\n";
@@ -21,7 +21,5 @@ class MigrateController extends BaseMigrateController
         }
 
         return parent::beforeAction($action);
-    }
-
-    
+    }   
 }
