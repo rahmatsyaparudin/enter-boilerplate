@@ -58,4 +58,20 @@ class SiteController extends Controller
 
         return $data;
     }
+
+    public function actionVersion()
+    {
+        $data = [
+            'code' => 200,
+            'success' => true,
+            'message' => Yii::t('app', 'success'),
+            'data' => [
+                [
+                    'version' => Yii::getVersion(),
+                ]
+            ],
+        ];
+
+        return YII_ENV_DEV ? $data : [];
+    }
 }

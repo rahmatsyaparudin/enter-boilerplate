@@ -38,7 +38,7 @@ return array_merge($params_json, [
     #DONT FORGET TO CHANGE THIS WHEN IN PRODUCTION
     'extraCookies' => $extraCookies,
     'codeApp' => $codeApp,
-    'migrateFresh' => !YII_ENV_DEV,
+    'migrateFresh' => YII_ENV_DEV,
     'timestamp' => [
         'timeZone' => 'Asia/Jakarta',
         'UTC' => 'Y-m-d\TH:i:s\Z',
