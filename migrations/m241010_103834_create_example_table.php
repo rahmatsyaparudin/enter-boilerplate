@@ -9,8 +9,8 @@ class m241010_103834_create_example_table extends Migration
 
     public function safeUp()
     {
-        $mongodb_param = require(\Yii::getAlias('@app/config/mongodb.php'));
         $params = require(\Yii::getAlias('@app/config/params.php'));
+        $mongodb_param = require(\Yii::getAlias('@app/config/mongodb.php'));
         $UTCTimestamp = gmdate($params['timestamp']['UTC']);
         $dbDefault = $params['dbDefault'];
         
@@ -36,11 +36,6 @@ class m241010_103834_create_example_table extends Migration
             'sync_mdb' => $this->smallInteger()->defaultValue(null)->comment($dbDefault['syncMdbComment']),
             // 'lock_version' => $this->integer()->notNull()->defaultValue(1)->comment($dbDefault['optimisticLockingComment']),
         ]);
-
-        if (!YII_ENV_DEV) {
-            echo $dbDefault['skipMigrateFresh'];
-            return true;
-        }
 
         $dummyData = [
             [
@@ -70,12 +65,13 @@ class m241010_103834_create_example_table extends Migration
 
             #uncomment below code if you want to insert data to mongodb
             // $insertID['id'] = $key + 1;
-            // $collection->insertOne($insertID + $value);
+            // $collection->insertOne(array_merge($insertID, $value));
         }
     }
 
     public function safeDown()
     {
+        $params = require(\Yii::getAlias('@app/config/params.php'));
         $mongodb_param = require(\Yii::getAlias('@app/config/mongodb.php'));
         $dbDefault = $params['dbDefault'];
         

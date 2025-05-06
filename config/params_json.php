@@ -13,9 +13,11 @@
 $params['dbDefault'] = [
     'createdBy' => 'system',
     'masterID' => null,
-    'syncMaster' => 1,
     'slaveID' => null,
+    'syncMaster' => 1,
     'syncSlave' => 1,
+    'syncMdb' => 1,
+    'status' => 2,
     'currency' => 'IDR',
     'optimisticLockingComment' => 'Optimistic Locking',
     'syncMdbComment' => '1: unsync, null: synced',
@@ -24,6 +26,8 @@ $params['dbDefault'] = [
     'statusComment' => '0: Inactive, 1: Active, 2: Draft, 3: Completed, 4: Deleted, 5: Maintenance',
     'purchaseComment' => '0: Inactive, 1: Active, 2: Draft, 3: Completed, 4: Deleted, 5: Maintenance, 6: Approved, 7: Rejected',
     'skipMigrateFresh' => 'Skipping migration/fresh for non-dev environment.\n',
+
+    #Add your new database default values here
 ];
 
 /**
