@@ -1,7 +1,7 @@
 <?php
 
 use yii\db\Migration;
-use MongoDB\Client;
+// use MongoDB\Client;
 
 class m241010_103834_create_example_table extends Migration
 {
@@ -34,7 +34,8 @@ class m241010_103834_create_example_table extends Migration
                 ],
             ])),
             'sync_mdb' => $this->smallInteger()->defaultValue(null)->comment($dbDefault['syncMdbComment']),
-            // 'lock_version' => $this->integer()->notNull()->defaultValue(1)->comment($dbDefault['optimisticLockingComment']),
+            #uncomment this if u want use optimistic locking
+            // 'lock_version' => $this->integer()->notNull()->defaultValue($dbDefault['lockVersion'])->comment($dbDefault['optimisticLockingComment']),
         ]);
 
         $dummyData = [
