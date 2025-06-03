@@ -17,6 +17,7 @@ use app\components\CustomException;
 use app\helpers\Constants;
 use app\exceptions\ErrorMessage;
 use yii\base\DynamicModel;
+use yii\helpers\ArrayHelper;
 
 /**
  * CoreController serves as the base controller for RESTful API endpoints.
@@ -46,9 +47,12 @@ class CoreController extends Controller
      */
     public function behaviors()
     {
+        $behaviors = parent::behaviors();
         $this->enableCsrfValidation = Yii::$app->params['request']['enableCsrfValidation'];
-        
-        return [
+
+        unset($behaviors['authenticator']);
+
+        return ArrayHelper::merge($behaviors, [
             'corsFilter' => [
                 'class' => '\yii\filters\Cors',
                 'cors' => [
@@ -71,10 +75,10 @@ class CoreController extends Controller
                 'except' => Yii::$app->params['jwt']['except'],
             ],
             'verbs' => [
-				'class' => 'yii\filters\VerbFilter',
-				'actions' => Yii::$app->params['verbsAction'],
-			],
-        ];
+                'class' => 'yii\filters\VerbFilter',
+                'actions' => Yii::$app->params['verbsAction'],
+            ],
+        ]);
     }
 
     /**
@@ -196,7 +200,7 @@ class CoreController extends Controller
         }
 
         if ($otherParams) {
-            $where = array_merge($where, $otherParams);
+            $where = ArrayHelper::merge($where, $otherParams);
         }
 
 		if (!empty($where)) {
